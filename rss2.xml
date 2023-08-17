@@ -9,13 +9,28 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>选择有时候比努力更重要</description>
-    <pubDate>Thu, 17 Aug 2023 11:08:24 GMT</pubDate>
+    <pubDate>Thu, 17 Aug 2023 12:42:39 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>My New Post</title>
+      <link>http://example.com/blog/2023/08/17/My-New-Post/</link>
+      <guid>http://example.com/blog/2023/08/17/My-New-Post/</guid>
+      <pubDate>Thu, 17 Aug 2023 12:42:39 GMT</pubDate>
+      
+      
+      
+      
+      
+      
+      <comments>http://example.com/blog/2023/08/17/My-New-Post/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>Hello World</title>
-      <link>http://example.com/2023/08/17/hello-world/</link>
-      <guid>http://example.com/2023/08/17/hello-world/</guid>
+      <link>http://example.com/blog/2023/08/17/hello-world/</link>
+      <guid>http://example.com/blog/2023/08/17/hello-world/</guid>
       <pubDate>Thu, 17 Aug 2023 11:08:55 GMT</pubDate>
       
         
@@ -30,7 +45,7 @@
       
       
       
-      <comments>http://example.com/2023/08/17/hello-world/#disqus_thread</comments>
+      <comments>http://example.com/blog/2023/08/17/hello-world/#disqus_thread</comments>
       
     </item>
     
