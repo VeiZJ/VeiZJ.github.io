@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="nuxt入门 【前端部分】使用nuxt开发toC应用，实现服务端渲染。 课程目标：  nuxt是啥？ 搭建nuxt开发环境？ 前端 路由搭建 layout…   资源的使用 scss的使用 数据的获取   后端 封装请求方法 服务端渲染    安装官网链接  node版本大于16.11 安装pnpm yarn global add pnpm   设置host 映射ip	 打开目录 C:\Windo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nuxt">
+<meta property="og:url" content="http://example.com/blog/2023/12/03/nuxt/index.html">
+<meta property="og:site_name" content="VEI">
+<meta property="og:description" content="nuxt入门 【前端部分】使用nuxt开发toC应用，实现服务端渲染。 课程目标：  nuxt是啥？ 搭建nuxt开发环境？ 前端 路由搭建 layout…   资源的使用 scss的使用 数据的获取   后端 封装请求方法 服务端渲染    安装官网链接  node版本大于16.11 安装pnpm yarn global add pnpm   设置host 映射ip	 打开目录 C:\Windo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-03T08:23:54.000Z">
+<meta property="article:modified_time" content="2023-12-03T08:35:46.646Z">
+<meta property="article:author" content="veizj">
+<meta property="article:tag" content="SEO">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/blog/2023/12/03/nuxt/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>nuxt | VEI</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="VEI" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">VEI</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/blog/2023/12/03/nuxt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="veizj">
+      <meta itemprop="description" content="选择有时候比努力更重要">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VEI">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          nuxt
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-12-03 16:23:54 / 修改时间：16:35:46" itemprop="dateCreated datePublished" datetime="2023-12-03T16:23:54+08:00">2023-12-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/" itemprop="url" rel="index"><span itemprop="name">服务端渲染</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="nuxt入门-【前端部分】"><a href="#nuxt入门-【前端部分】" class="headerlink" title="nuxt入门 【前端部分】"></a>nuxt入门 【前端部分】</h1><p>使用nuxt开发toC应用，实现<strong>服务端渲染</strong>。</p>
+<p>课程目标：</p>
+<ul>
+<li>nuxt是啥？</li>
+<li>搭建nuxt开发环境？</li>
+<li>前端<ul>
+<li>路由搭建<ul>
+<li>layout…</li>
+</ul>
+</li>
+<li>资源的使用</li>
+<li>scss的使用</li>
+<li>数据的获取</li>
+</ul>
+</li>
+<li>后端<ul>
+<li>封装请求方法</li>
+<li>服务端渲染</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a target="_blank" rel="noopener" href="https://nuxt.com.cn/docs/getting-started/installation">官网链接</a></p>
+<ul>
+<li>node版本大于16.11</li>
+<li>安装pnpm<ul>
+<li>yarn global add pnpm</li>
+</ul>
+</li>
+<li>设置host 映射ip	<a target="_blank" rel="noopener" href="https://juejin.cn/post/7154586714416087076"></a><ul>
+<li>打开目录 C:\Windows\System32\drivers\etc  修改hosts文件</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">185.199</span><span class="number">.108</span><span class="number">.133</span> raw.<span class="property">githubusercontent</span>.<span class="property">com</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>初始化<ul>
+<li>pnpm dlx nuxi init nuxt-demo</li>
+<li>npx nuxi init <project-name></li>
+</ul>
+</li>
+<li>进入项目 cd <project-name></li>
+<li>安装依赖 yarn</li>
+<li>运行项目</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><a target="_blank" rel="noopener" href="https://nuxt.com.cn/docs/getting-started/configuration">官网链接</a></p>
+<h4 id="nuxt-config-ts"><a href="#nuxt-config-ts" class="headerlink" title="nuxt.config.ts"></a>nuxt.config.ts</h4><p>类似与vite项目的vite.config.ts, 亦或者是vue2项目的vue.config.ts。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://nuxt.com/docs/api/configuration/nuxt-config</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineNuxtConfig</span>(&#123;</span><br><span class="line">  <span class="attr">devtools</span>: &#123; <span class="attr">enabled</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  <span class="comment">// 环境变量</span></span><br><span class="line">  <span class="attr">runtimeConfig</span>: &#123;</span><br><span class="line">    <span class="comment">// 服务端的环境变量</span></span><br><span class="line">    <span class="attr">apiSecret</span>: <span class="string">&#x27;123&#x27;</span>,</span><br><span class="line">    <span class="comment">// 客户端的环境变量</span></span><br><span class="line">    <span class="attr">public</span>: &#123;</span><br><span class="line">      <span class="attr">apiBase</span>: <span class="string">&#x27;/api&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">vite</span>: &#123;</span><br><span class="line">    <span class="attr">css</span>: &#123;</span><br><span class="line">      <span class="attr">preprocessorOptions</span>: &#123;</span><br><span class="line">        <span class="attr">scss</span>: &#123;</span><br><span class="line">          <span class="attr">additionalData</span>: <span class="string">`@import &#x27;@/assets/mixin.scss&#x27;;`</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 配置px--》rem 啥的</span></span><br><span class="line">  <span class="attr">postcss</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">webpack</span>: &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>其中环境变量，可以通过nuxt内置方法获取。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> runtimeConfig = <span class="title function_">useRuntimeConfig</span>()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>useRuntimeConfig无须导入直接使用即可</p>
+</blockquote>
+<h4 id="app-config-ts"><a href="#app-config-ts" class="headerlink" title="app.config.ts"></a>app.config.ts</h4><p>当前的应用配置文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineAppConfig</span>(&#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&#x27;Hello Nuxt&#x27;</span>,</span><br><span class="line">  <span class="attr">theme</span>: &#123;</span><br><span class="line">    <span class="attr">dark</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">colors</span>: &#123;</span><br><span class="line">      <span class="attr">primary</span>: <span class="string">&#x27;#ff0000&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> appConfig = <span class="title function_">useAppConfig</span>()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用内置方法获取</p>
+</blockquote>
+<h2 id="scss"><a href="#scss" class="headerlink" title="scss"></a>scss</h2><h4 id="配置全局scss"><a href="#配置全局scss" class="headerlink" title="配置全局scss"></a>配置全局scss</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineNuxtConfig</span>(&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="attr">vite</span>: &#123;</span><br><span class="line">        <span class="attr">css</span>: &#123;</span><br><span class="line">          <span class="attr">preprocessorOptions</span>: &#123;</span><br><span class="line">            <span class="attr">scss</span>: &#123;</span><br><span class="line">              <span class="attr">additionalData</span>: <span class="string">`@import &#x27;@/assets/mixin.scss&#x27;;`</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">  	&#125;</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>跟vite的配置一样</p>
+</blockquote>
+<h4 id="reset-scss的使用"><a href="#reset-scss的使用" class="headerlink" title="reset.scss的使用"></a>reset.scss的使用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://nuxt.com/docs/api/configuration/nuxt-config</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineNuxtConfig</span>(&#123;</span><br><span class="line">  <span class="attr">devtools</span>: &#123; <span class="attr">enabled</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  <span class="attr">css</span>: [</span><br><span class="line">    <span class="string">&#x27;@/style/main.scss&#x27;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="应用-组件-页面"><a href="#应用-组件-页面" class="headerlink" title="应用&amp;组件&amp;页面"></a>应用&amp;组件&amp;页面</h2><p><a target="_blank" rel="noopener" href="https://nuxt.com.cn/docs/getting-started/views">官网链接</a></p>
+<h4 id="app-vue"><a href="#app-vue" class="headerlink" title="app.vue"></a>app.vue</h4><p>是整个项目的入口文件</p>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p>component文件夹下的所有.vue文件。 创建之后，<strong>直接使用，无须导入。</strong></p>
+<h4 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h4><p>pages下的.vue文件就是页面。页面也是主动注册路由。</p>
+<h2 id="layout的使用"><a href="#layout的使用" class="headerlink" title="layout的使用"></a>layout的使用</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7155416782872772622">参考文档</a></p>
+<h4 id="layout的定义"><a href="#layout的定义" class="headerlink" title="layout的定义"></a>layout的定义</h4><p>在项目的layouts目录下定义各种layout即可。通过插槽传递内容</p>
+<ul>
+<li>layouts&#x2F;default.vue    一个默认的布局：default</li>
+<li>layouts&#x2F;customer.vue  一个名字叫做customer的布局</li>
+</ul>
+<h4 id="layout的使用-1"><a href="#layout的使用-1" class="headerlink" title="layout的使用"></a>layout的使用</h4><p>通过组件NuxtLayout配合NuxtPage 实现全局使用layout</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">NuxtLayout</span> <span class="attr">name</span>=<span class="string">&quot;custom&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">NuxtPage</span>&gt;</span><span class="tag">&lt;/<span class="name">NuxtPage</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">NuxtLayout</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>app.vue。 当然你可以通过配置NuxtLayout的name指定非default的布局</p>
+</blockquote>
+<h4 id="definePageMeta的使用"><a href="#definePageMeta的使用" class="headerlink" title="definePageMeta的使用"></a>definePageMeta的使用</h4><p>经过以上步骤，项目中所有页面都应用了某个布局，如果某一个文件不想用。使用definePageMeta方法即可</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">definePageMeta</span>(&#123;</span><br><span class="line">     <span class="attr">layout</span>: <span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>nuxt的资源目录文件分为 public, assets.没什么好说的~~~</p>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p><a target="_blank" rel="noopener" href="https://nuxt.com.cn/docs/getting-started/routing">官方链接</a></p>
+<p>路由配置</p>
+<p>路由参数设置</p>
+<p>获取路由参数</p>
+<p>路由中间件【路由守卫】</p>
+<h2 id="element-plus的使用"><a href="#element-plus的使用" class="headerlink" title="element-plus的使用"></a>element-plus的使用</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7244409860832509989">掘金参考</a></p>
+<h4 id="以前的项目"><a href="#以前的项目" class="headerlink" title="以前的项目"></a>以前的项目</h4><ul>
+<li><p>下载element</p>
+</li>
+<li><p>在main.ts中引入element, 样式文件</p>
+</li>
+<li><p>app.use(element)</p>
+</li>
+</ul>
+<h1 id="nuxt进阶【服务端渲染】"><a href="#nuxt进阶【服务端渲染】" class="headerlink" title="nuxt进阶【服务端渲染】"></a>nuxt进阶【服务端渲染】</h1><h2 id="服务端中间件编写"><a href="#服务端中间件编写" class="headerlink" title="服务端中间件编写"></a>服务端中间件编写</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 中间件，类似于koa的中间件，event类似于koa的ctx</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineEventHandler</span>(<span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// console.log()</span></span><br><span class="line">    <span class="comment">// console.log(&#x27;New request: &#x27; + event.node.req.url)</span></span><br><span class="line">    <span class="comment">// 统一设置token</span></span><br><span class="line">    <span class="keyword">const</span> app = <span class="title function_">useRuntimeConfig</span>()</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(event)</span><br><span class="line">    event.<span class="property">context</span>.<span class="property">baseUrl</span> = app[<span class="string">&#x27;BASE_URL&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="fetch封装"><a href="#fetch封装" class="headerlink" title="fetch封装"></a>fetch封装</h2><h2 id="页面使用"><a href="#页面使用" class="headerlink" title="页面使用"></a>页面使用</h2>
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SEO/" rel="tag"># SEO</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2023/12/03/vue3Study/" rel="prev" title="vue2.01">
+      <i class="fa fa-chevron-left"></i> vue2.01
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nuxt%E5%85%A5%E9%97%A8-%E3%80%90%E5%89%8D%E7%AB%AF%E9%83%A8%E5%88%86%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">nuxt入门 【前端部分】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nuxt-config-ts"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">nuxt.config.ts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#app-config-ts"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">app.config.ts</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scss"><span class="nav-number">1.3.</span> <span class="nav-text">scss</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%85%A8%E5%B1%80scss"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">配置全局scss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reset-scss%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">reset.scss的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8-%E7%BB%84%E4%BB%B6-%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">应用&amp;组件&amp;页面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#app-vue"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">app.vue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">页面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layout%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text">layout的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#layout%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">layout的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#layout%E7%9A%84%E4%BD%BF%E7%94%A8-1"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">layout的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#definePageMeta%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.0.3.</span> <span class="nav-text">definePageMeta的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%BA%90"><span class="nav-number">1.6.</span> <span class="nav-text">资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1"><span class="nav-number">1.7.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#element-plus%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.8.</span> <span class="nav-text">element-plus的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5%E5%89%8D%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.8.0.1.</span> <span class="nav-text">以前的项目</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nuxt%E8%BF%9B%E9%98%B6%E3%80%90%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E3%80%91"><span class="nav-number">2.</span> <span class="nav-text">nuxt进阶【服务端渲染】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%BC%96%E5%86%99"><span class="nav-number">2.1.</span> <span class="nav-text">服务端中间件编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fetch%E5%B0%81%E8%A3%85"><span class="nav-number">2.2.</span> <span class="nav-text">fetch封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E4%BD%BF%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">页面使用</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="veizj"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">veizj</p>
+  <div class="site-description" itemprop="description">选择有时候比努力更重要</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/yourname" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/yourname" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-08 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">veizj</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">86k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:18</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.8' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
