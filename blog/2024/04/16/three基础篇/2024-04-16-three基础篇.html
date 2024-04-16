@@ -1,7 +1,7 @@
 <hr>
 <h2 id="title-three基础篇date-2024-04-16-16-01-16tags-ThreeJScategories-ThreeJs"><a href="#title-three基础篇date-2024-04-16-16-01-16tags-ThreeJScategories-ThreeJs" class="headerlink" title="title: three基础篇date: 2024-04-16 16:01:16tags: ThreeJScategories: ThreeJs"></a>title: three基础篇<br>date: 2024-04-16 16:01:16<br>tags: ThreeJS<br>categories: ThreeJs</h2><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="材质"><a href="#材质" class="headerlink" title="材质"></a>材质</h3><h4 id="基类：Material"><a href="#基类：Material" class="headerlink" title="基类：Material"></a>基类：Material</h4><p>定义：材质描述了对象objects的外光，它们的定义方式与渲染器无关，如果使用不同的渲染器，则不必重写材质。</p>
-<p><img src="/1702368339909.png" alt="1702368339909"></p>
-<p><img src="/1702368442450.png" alt="1702368442450"></p>
+<p><img src="/./1702368339909.png" alt="1702368339909"></p>
+<p><img src="/./1702368442450.png" alt="1702368442450"></p>
 <p>整体上来看，就是渲染表现能力越强，占用的计算机硬件资源更多。</p>
 <ul>
 <li>占用渲染资源 MeshBasicMaterial &lt; MeshLambertMaterial &lt; MeshPhongMaterial &lt; MeshStandardMaterial &lt; MeshPhysicalMaterial</li>
@@ -9,18 +9,18 @@
 </ul>
 <h5 id="材质或集合体共享"><a href="#材质或集合体共享" class="headerlink" title="材质或集合体共享"></a>材质或集合体共享</h5><p>我们可以直接访问并修改物体的材质对象，因为材质事共享的如果对其进行修改该用到该材质的物体都会发生改变</p>
 <p>我们同时也可以直接访问并修改物体的集合体对象，若有其他物体也是用到这个集合体 修改后也会造成影响。</p>
-<p><img src="/1702370190692.png" alt="1702370190692"></p>
-<h5 id="三维变量的克隆和复制方法"><a href="#三维变量的克隆和复制方法" class="headerlink" title="三维变量的克隆和复制方法"></a>三维变量的克隆和复制方法</h5><p>let v1 &#x3D; new three.Vector(1,2,3)</p>
+<p><img src="/./1702370190692.png" alt="1702370190692"></p>
+<h5 id="三维变量的克隆和复制方法"><a href="#三维变量的克隆和复制方法" class="headerlink" title="三维变量的克隆和复制方法"></a>三维变量的克隆和复制方法</h5><p>let v1 &#x3D; new three.Vector(.&#x2F;1,2,3)</p>
 <p>letv2 &#x3D; v1.clone() &#x2F;&#x2F;此时会克隆一个与v1一样属性与值得对象</p>
 <p>let v3 &#x3D;  {}</p>
 <p>v3.copy(v1)可将v1得值赋值给v3 </p>
 <p>若是物体得克隆 他的材质与集合体不单独进行克隆得话 那么材质和集合体还是存在共享问题</p>
-<p><img src="/1702368996979.png" alt="1702368996979"></p>
+<p><img src="/./1702368996979.png" alt="1702368996979"></p>
 <h4 id="顶点："><a href="#顶点：" class="headerlink" title="顶点："></a>顶点：</h4><p>顶点的每个坐标对应一个顶点法线 ，法线关系光照后阴影的角度。</p>
 <p>物体的属性有一些列的属性：position,rotation,scalr等属性 还有相关的方法，其都会继承父级构造函数的属性和方法</p>
 <p>向量：normalize 将向量转为单位向量 长度为1</p>
-<p><img src="/1702368060275.png" alt="1702368060275"></p>
-<h3 id="组对象group"><a href="#组对象group" class="headerlink" title="组对象group"></a>组对象group</h3><p><img src="/1702435513665.png" alt="1702435513665"></p>
+<p><img src="/./1702368060275.png" alt="1702368060275"></p>
+<h3 id="组对象group"><a href="#组对象group" class="headerlink" title="组对象group"></a>组对象group</h3><p><img src="/./1702435513665.png" alt="1702435513665"></p>
 <p>子对象：group得children属性下可以查看到这个组对象下面得所有子对象。</p>
 <p>子对象任何变化始终都是根据着父节点进行的。我们也可以直接使用Object3D创建一个节点对象，也可以给网格添加子对象。</p>
 <p>通过设置name 可以给相应的物体设置指定的名字。</p>
@@ -34,7 +34,7 @@
 <p>物体隐藏visible：物体object3d 隐藏或显示一个模型。 隐藏父级物体 他的子集物体也会被隐藏</p>
 <p> 材质隐藏visible：材质materail 通过该属性可以控制是否隐藏该材质对应的模型对象。 相同材质的隐藏的话 所有使用到此材质的物体的模型都会被隐藏</p>
 <p>object3d.remove:  scene , mesh ,都有删除这个方法 与add添加模型对立，可以删除他的子代模型 如“senec.remove(light)删除环境光，因为光照也是通过add添加的 ，场景模型多的话可以遍历子代模型条件删除一些模型。在进行删除尝试中发现了一个微妙的问题，就是在遍历traverse中不建议直接删除当前的属性。会出现一些奇怪的问题</p>
-<p><img src="/1702544424552.png" alt="1702544424552"></p>
+<p><img src="/./1702544424552.png" alt="1702544424552"></p>
 <h4 id="模型数的遍历"><a href="#模型数的遍历" class="headerlink" title="模型数的遍历"></a>模型数的遍历</h4><p>object3D.traverse() 遍历了下面的所有子子节点。</p>
 <p>object3D.getObjectByName() 根据Object.name来查找对应的名字的模型</p>
 <p>object3D.visible  控制模型的显示与隐藏</p>
@@ -123,7 +123,7 @@ const textureCube = new THREE.CubeTextureLoader()
 <p>3.渲染器设置preserveDrawingBuffer为true ，开启缓存。</p>
 <p>4.通过canvas的toDataURL(‘image&#x2F;png’)获取话不上的像素信息，将以png的格式保存。</p>
 <h6 id="mesh重叠时候会出现闪缩的情况叫做深度冲突（z-fighting）"><a href="#mesh重叠时候会出现闪缩的情况叫做深度冲突（z-fighting）" class="headerlink" title="mesh重叠时候会出现闪缩的情况叫做深度冲突（z-fighting）"></a>mesh重叠时候会出现闪缩的情况叫做深度冲突（z-fighting）</h6><h5 id="自定义划线：顶点数据来画"><a href="#自定义划线：顶点数据来画" class="headerlink" title="自定义划线：顶点数据来画"></a>自定义划线：顶点数据来画</h5><p>几何体setFromPoints（v3）将v3顶点数据设为几何体的attribute.position的顶点位置属性。除了可以是三维向量数组还可以是二位向量数组。</p>
-<h5 id="曲线：基类cuver"><a href="#曲线：基类cuver" class="headerlink" title="曲线：基类cuver"></a>曲线：基类cuver</h5><p><img src="/1712822846881.png" alt="1712822846881"></p>
+<h5 id="曲线：基类cuver"><a href="#曲线：基类cuver" class="headerlink" title="曲线：基类cuver"></a>曲线：基类cuver</h5><p><img src="/./1712822846881.png" alt="1712822846881"></p>
 <h3 id="管道几何体"><a href="#管道几何体" class="headerlink" title="管道几何体"></a>管道几何体</h3><pre><code>TubeGeometry(path, tubularSegments, radius, radiusSegments, closed)
 </code></pre>
 <h3 id="旋转成型几何体"><a href="#旋转成型几何体" class="headerlink" title="旋转成型几何体"></a>旋转成型几何体</h3><p><strong>LatheGeometry</strong>：通过一个圆形轮廓坐标点 旋转得到一个几何体曲面</p>
@@ -137,10 +137,10 @@ points为一个二维矢量组成的一个线段 segments为细分数， phiStar
 <pre><code>父类为Path，所以也是继承了父类的相关方法与属性，如画线，画圆，画椭圆，等等获取当前点等属性。
 传入点组成opints，可构造一个自定任意形状的多边形
 </code></pre>
-<p><img src="/1713148838218.png" alt="1713148838218"></p>
-<h6 id="若线与圆弧组合的时候，第一次的结束点自动衍生至第二个圆弧的起点。当前一次线画完时会采取以当前的currentPoint为中心点。"><a href="#若线与圆弧组合的时候，第一次的结束点自动衍生至第二个圆弧的起点。当前一次线画完时会采取以当前的currentPoint为中心点。" class="headerlink" title="若线与圆弧组合的时候，第一次的结束点自动衍生至第二个圆弧的起点。当前一次线画完时会采取以当前的currentPoint为中心点。"></a>若线与圆弧组合的时候，第一次的结束点自动衍生至第二个圆弧的起点。当前一次线画完时会采取以当前的currentPoint为中心点。</h6><h6 id="shape的线与圆共同使用的时候，他们的起点会相连接"><a href="#shape的线与圆共同使用的时候，他们的起点会相连接" class="headerlink" title="shape的线与圆共同使用的时候，他们的起点会相连接"></a>shape的线与圆共同使用的时候，他们的起点会相连接</h6><p><img src="/1713149897591.png" alt="1713149897591"></p>
+<p><img src="/./1713148838218.png" alt="1713148838218"></p>
+<h6 id="若线与圆弧组合的时候，第一次的结束点自动衍生至第二个圆弧的起点。当前一次线画完时会采取以当前的currentPoint为中心点。"><a href="#若线与圆弧组合的时候，第一次的结束点自动衍生至第二个圆弧的起点。当前一次线画完时会采取以当前的currentPoint为中心点。" class="headerlink" title="若线与圆弧组合的时候，第一次的结束点自动衍生至第二个圆弧的起点。当前一次线画完时会采取以当前的currentPoint为中心点。"></a>若线与圆弧组合的时候，第一次的结束点自动衍生至第二个圆弧的起点。当前一次线画完时会采取以当前的currentPoint为中心点。</h6><h6 id="shape的线与圆共同使用的时候，他们的起点会相连接"><a href="#shape的线与圆共同使用的时候，他们的起点会相连接" class="headerlink" title="shape的线与圆共同使用的时候，他们的起点会相连接"></a>shape的线与圆共同使用的时候，他们的起点会相连接</h6><p><img src="/./1713149897591.png" alt="1713149897591"></p>
 <h6 id="内孔：holes"><a href="#内孔：holes" class="headerlink" title="内孔：holes"></a>内孔：holes</h6><p>在创建的shape内挖出对应的孔洞，这些孔洞的坐标位置相对原点。</p>
-<p><img src="/1713153199017.png" alt="1713153199017"></p>
+<p><img src="/./1713153199017.png" alt="1713153199017"></p>
 <h3 id="边缘几何体"><a href="#边缘几何体" class="headerlink" title="边缘几何体"></a>边缘几何体</h3><p><strong>EdgesGeometry</strong>：给指定几何体添加外边框线查看其边缘。</p>
 <pre><code class="js">    // 集合体的边界线EdgesGeometry
     const geometryModle = new THREE.CylinderGeometry(2,2,32)
@@ -186,7 +186,7 @@ modelLoader.load(&#39;./bwm/scene.gltf&#39;,(gltf)=&gt;{
         extrudePath:cuverpath//通过一个三维曲线让这个多变对其沿着这个曲线拉伸
         steps:100//沿着路径细分精度，越大越光滑
 </code></pre>
-<p><img src="/1712907318826.png" alt="1712907318826"></p>
+<p><img src="/./1712907318826.png" alt="1712907318826"></p>
 <h5 id="弯曲水管流动效果："><a href="#弯曲水管流动效果：" class="headerlink" title="弯曲水管流动效果："></a>弯曲水管流动效果：</h5><p>贴图版本：创建一个贴图，然后将贴图设置一个阵列模式。再render函数中给贴图的x轴的点进行+1。</p>
 <pre><code class="js">const pointsV = new THREE.CatmullRomCurve3([
         new THREE.Vector3(20,10,5),
@@ -199,7 +199,7 @@ modelLoader.load(&#39;./bwm/scene.gltf&#39;,(gltf)=&gt;{
     pipeBackgroundImage.wrapS = THREE.RepeatWrapping;
     pipeBackgroundImage.wrapT = THREE.RepeatWrapping;
     // uv两个方向纹理重复数量
-    pipeBackgroundImage.repeat.set(1,1);//注意选择合适的阵列数量
+    pipeBackgroundImage.repeat.set(./1,1);//注意选择合适的阵列数量
     pipeBackgroundImage.encoding = THREE.SRGBColorSpace
     console.log(pipeBackgroundImage,&#39;tuoian&#39;);
     const pipeline = new THREE.TubeGeometry(pointsV,65, 2, 25)
@@ -229,7 +229,7 @@ geotry.attributes.color = new three.BufferAttribute(colors,3) //三个一组
 
 </code></pre>
 <p><em>颜色的rgb范围如下图  ↓</em></p>
-<p><img src="/1713170230091.png" alt="1713170230091"></p>
+<p><img src="/./1713170230091.png" alt="1713170230091"></p>
 <p>绘制彩色曲线</p>
 <pre><code class="js">// 1.创建一个三维贝塞尔曲线或者其他曲线
 const peakCover = new three.CubicBezierCurve3(
@@ -267,7 +267,7 @@ scene.add(coverLine)
 <li>它可以是一个另一个颜色实例。</li>
 <li>它可以是另外一个CSS样式。例如：<ul>
 <li>‘rgb(250, 0,0)’</li>
-<li>‘rgb(100%,0%,0%)’</li>
+<li>‘rgb(.&#x2F;100%,0%,0%)’</li>
 <li>‘hsl(0, 100%, 50%)’</li>
 <li>‘#ff0000’</li>
 <li>‘#f00’</li>
@@ -309,7 +309,7 @@ let c3 = c1.clone().lerColor(c1,c2,占比)//这里是先克隆在用插值修改
     }
 </code></pre>
 <h3 id="模型的顶点及数据处理"><a href="#模型的顶点及数据处理" class="headerlink" title="模型的顶点及数据处理"></a>模型的顶点及数据处理</h3><p>引入的模型有些在返回的模型json对象的scne.children[0]中有geometry属性。有的会在其下面继续拓展多个物体。此时我们就需要遍历这个对象，去获取他的顶点数据。</p>
-<h6 id="BufferAttribute具有getX-getY-getZ-方法获取x-1维-y-2维-z-3维-指定项的数据"><a href="#BufferAttribute具有getX-getY-getZ-方法获取x-1维-y-2维-z-3维-指定项的数据" class="headerlink" title="BufferAttribute具有getX(), getY() ,getZ() 方法获取x(1维) y(2维) z(3维) 指定项的数据"></a>BufferAttribute具有getX(), getY() ,getZ() 方法获取x(1维) y(2维) z(3维) 指定项的数据</h6><pre><code class="js">    //通过顶点数据 来将山体根据高度着色
+<h6 id="BufferAttribute具有getX-getY-getZ-方法获取x-1维-y-2维-z-3维-指定项的数据"><a href="#BufferAttribute具有getX-getY-getZ-方法获取x-1维-y-2维-z-3维-指定项的数据" class="headerlink" title="BufferAttribute具有getX(), getY() ,getZ() 方法获取x(.&#x2F;1维) y(2维) z(3维) 指定项的数据"></a>BufferAttribute具有getX(), getY() ,getZ() 方法获取x(.&#x2F;1维) y(2维) z(3维) 指定项的数据</h6><pre><code class="js">    //通过顶点数据 来将山体根据高度着色
     modelLoader.load(&#39;shan2.glb&#39;,(gltf)=&gt;{
         gltf.scene.position.set(5,0,5)
         console.log( gltf.scene);
@@ -352,7 +352,7 @@ let c3 = c1.clone().lerColor(c1,c2,占比)//这里是先克隆在用插值修改
      })
 
 </code></pre>
-<p><img src="/1713253141908.png" alt="1713253141908"></p>
+<p><img src="/./1713253141908.png" alt="1713253141908"></p>
 <h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><h3 id="资源网站"><a href="#资源网站" class="headerlink" title="资源网站"></a>资源网站</h3><ul>
 <li><p>3D模型下载：<a href="https://sketchfab.com/">https://sketchfab.com/</a></p>
 </li>
