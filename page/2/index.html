@@ -197,7 +197,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-08-18 10:00:38" itemprop="dateModified" datetime="2023-08-18T10:00:38+08:00">2023-08-18</time>
+                <time title="修改时间：2023-12-06 13:35:11" itemprop="dateModified" datetime="2023-12-06T13:35:11+08:00">2023-12-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,14 +215,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
+              <span>6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -265,6 +265,11 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自适应屏幕大小</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;resize&#x27;</span>,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">  <span class="comment">// 重新设置渲染器的宽高比</span></span><br><span class="line">  render.<span class="title function_">setSize</span>(<span class="variable language_">window</span>.<span class="property">innerWidth</span>,<span class="variable language_">window</span>.<span class="property">innerHeight</span>) </span><br><span class="line">  <span class="comment">// 重置相机的宽高比</span></span><br><span class="line">  camera.<span class="property">aspect</span>= <span class="variable language_">window</span>.<span class="property">innerWidth</span> / <span class="variable language_">window</span>.<span class="property">innerHeight</span></span><br><span class="line">  <span class="comment">// 更新相机的投影矩阵</span></span><br><span class="line">  camera.<span class="title function_">updateProjectionMatrix</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <h4 id="全屏"><a href="#全屏" class="headerlink" title="全屏"></a>全屏</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 开启全屏</span><br><span class="line">const btn = document.createElement(&#x27;button&#x27;)</span><br><span class="line">btn.innerHTML= &#x27;全屏&#x27;</span><br><span class="line">btn.addEventListener(&#x27;click&#x27;,()=&gt;&#123;</span><br><span class="line">  // 要body进行全屏 而不是画布 不然按钮就看不见了</span><br><span class="line">  // render.domElement.requestFullscreen()</span><br><span class="line">  document.body.requestFullscreen()</span><br><span class="line">&#125;)</span><br><span class="line">btn.style.position = &#x27;absolute&#x27;</span><br><span class="line">btn.style.top = &#x27;20px&#x27;</span><br><span class="line">btn.style.left = &#x27;20px&#x27;</span><br><span class="line">btn.style.zIndex = &#x27;9999&#x27;</span><br><span class="line">document.body.appendChild(btn)</span><br></pre></td></tr></table></figure>
+
+<h4 id="空间节点Object3D"><a href="#空间节点Object3D" class="headerlink" title="空间节点Object3D"></a>空间节点Object3D</h4><p>​	使用情况：如果一个模块空间含有多个物体的情况，在其某个节点下添加子节点，此时缩放这个节点，它的所属空间也会跟着缩放，此时子节点的物体也会跟着缩放。避免这一情况的发生，我们会创建一个空的空间节点来来装这些空间，将节点与它的子节点装在其中，无需进行嵌套，因为此时这两个节点的远点都是相对空节点的原点。</p>
+<p>材质(Material)和几何体(Geometry)可以被多个网格(Mesh)对象使用。比如在不同的位置画两个蓝色立方体，我们会需要两个网格(Mesh)对象来代表每一个立方体的位置和方向。但只需一个几何体(Geometry)来存放立方体的顶点数据，和一种材质(Material)来定义立方体的颜色为蓝色就可以了。两个网格(Mesh)对象都引用了相同的几何体(Geometry)和材质(Material)</p>
+<p>材质：MeshBasicMaterial：不受光照影响， MeshPhongMaterial:受光照影响</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">const render1 = new three.WebGL1Renderer()</span><br><span class="line">     console.log(this.threeDom.style.width);</span><br><span class="line">     render1.setSize(w,h)</span><br><span class="line">     this.threeDom.appendChild(render1.domElement)</span><br><span class="line">     //设置相机的位置 与朝向</span><br><span class="line">     camere.position.set(0, 10, 0); //y轴距离10处</span><br><span class="line">     camere.up.set(0, 0, 1);//z轴在上</span><br><span class="line">     camere.lookAt(0, 0, 0);//看向原点</span><br><span class="line">     const arr = []</span><br><span class="line">     //设置一个球形缓存体的设置</span><br><span class="line">     const radius = 1</span><br><span class="line">     const widthSegmets = 360</span><br><span class="line">     const heightSegments = 360 </span><br><span class="line">     //只在场景中进行添加</span><br><span class="line">     const sphereGemotry = new three.SphereGeometry(radius,widthSegmets,heightSegments)</span><br><span class="line">     //单独创建一个空余的空间来</span><br><span class="line">     const color = 0xffffff;</span><br><span class="line">     const intensity = 100;</span><br><span class="line">     const light = new three.PointLight(color, intensity);</span><br><span class="line">     light.position.set(-2,0,0)</span><br><span class="line">     scene.add(light);</span><br><span class="line">     //创建第一层空间 用于太阳 与含有嵌套关系的地月系统的第二层空间</span><br><span class="line">     const systemObje = new three.Object3D()</span><br><span class="line">     arr.push(systemObje)</span><br><span class="line">     const sunMaterial = new 			three.MeshPhongMaterial(&#123;emissive:0xffff00&#125;)</span><br><span class="line">     const sunMesh = new three.Mesh(sphereGemotry,sunMaterial)</span><br><span class="line">     sunMesh.scale.set(2,2,2)</span><br><span class="line">     systemObje.add(sunMesh)</span><br><span class="line">     arr.push(sunMesh)</span><br><span class="line">     //地月关系 创建第二层空间 其中含有嵌套关系</span><br><span class="line">     const other = new three.Object3D()</span><br><span class="line">     other.position.x = 10</span><br><span class="line">     arr.push(other)</span><br><span class="line">     systemObje.add(other)</span><br><span class="line"></span><br><span class="line">     const childMaterial = new three.MeshPhongMaterial(&#123;color: &quot;#303438&quot;,emissive: &quot;440fad&quot;&#125;)</span><br><span class="line">     const childMseh = new three.Mesh(sphereGemotry,childMaterial)</span><br><span class="line">     childMseh.scale.set(1.5,1.5,1.5)</span><br><span class="line">     other.add(childMseh)</span><br><span class="line">     arr.push(childMseh)</span><br><span class="line"></span><br><span class="line">     const moonMaterial = new three.MeshPhongMaterial(&#123;color: &quot;#303438&quot;,emissive: 0x112244&#125;)</span><br><span class="line">     const moonMesh = new three.Mesh(sphereGemotry,moonMaterial)</span><br><span class="line">     moonMesh.position.set(3,0,0)</span><br><span class="line">     arr.push(moonMesh)</span><br><span class="line">     other.add(moonMesh)</span><br><span class="line">   </span><br><span class="line">     scene.add(systemObje)</span><br><span class="line">     const controls = new OrbitControls(camere, render1.domElement);</span><br><span class="line">     const axeHelper = new three.AxesHelper(50);</span><br><span class="line">     scene.add(axeHelper);</span><br><span class="line">     function animation() &#123;</span><br><span class="line">       arr.forEach(item=&gt;&#123;</span><br><span class="line">         item.rotation.y += 0.01;</span><br><span class="line">       &#125;)</span><br><span class="line"> </span><br><span class="line">     controls.update()</span><br><span class="line">     render1.render(scene, camere);</span><br><span class="line">     requestAnimationFrame(animation);</span><br><span class="line">   &#125;</span><br><span class="line">   animation();</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">     </span><br></pre></td></tr></table></figure>
 
 
 
@@ -363,7 +368,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -410,7 +415,7 @@
 <div class="copyright">
   
   &copy; 2023-08 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -419,12 +424,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">86k</span>
+    <span title="站点总字数">73k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:18</span>
+    <span title="站点阅读时长">1:07</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
