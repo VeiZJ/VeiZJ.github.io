@@ -166,6 +166,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/blog/2025/02/11/phaser3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="veizj">
+      <meta itemprop="description" content="选择有时候比努力更重要">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VEI">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2025/02/11/phaser3/" class="post-title-link" itemprop="url">phaser3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-11 14:16:16 / 修改时间：18:09:08" itemprop="dateCreated datePublished" datetime="2025-02-11T14:16:16+08:00">2025-02-11</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Phaser3-js"><a href="#Phaser3-js" class="headerlink" title="Phaser3.js"></a>Phaser3.js</h1><h2 id="1-什么是Phaser-js"><a href="#1-什么是Phaser-js" class="headerlink" title="1.什么是Phaser.js"></a>1.什么是Phaser.js</h2><p> Phaser 是一个快速、免费且有趣的开源 HTML5 游戏框架，可在桌面和移动 Web 浏览器中提供 WebGL 和Canvas 渲染,它是使用并依赖 Web 技术构建的。它创建的游戏旨在在桌面或移动浏览器或能够运行网络游戏的应用程序（如 Discord、SnapChat、Facebook 等）中玩。有多种方法可以使用第 3 方工具将浏览器游戏转换为本机移动或桌面应用程序，许多 Phaser 开发人员已经成功地做到了这一点。然而，Phasers 的主要关注点是，而且永远是 web。  </p>
+<p> Phaser 支持各种不同的物理系统，每个系统都充当可用于任何 Phaser 场景的插件。 如： Arcade Physics、Impact Physics 和 Matter.js Physics  </p>
+<h2 id="2-核心配置config"><a href="#2-核心配置config" class="headerlink" title="2.核心配置config"></a>2.核心配置config</h2><p>对游戏进行一些列配置,如type、scene、 physics 、camera等</p>
+<h3 id="2-1-Scene"><a href="#2-1-Scene" class="headerlink" title="2.1 Scene"></a>2.1 Scene</h3><p> <strong>Arcade Physics(physics)</strong> ：物理支持平台，在config 中先进行配置，方可在场景中设置对应模块组。在 Arcade Physics 中有两种类型的物理体，动态( Dynamic )和静态(Static)两种类型</p>
+<p><strong>动态物体：</strong> 可以通过速度或加速度等力四处移动的物体。它可以与其他物体反弹和碰撞，并且这种碰撞受物体和其他元素的质量影响。</p>
+<p><strong>静态物体：</strong> 仅具有位置和大小。它不受重力影响，你不能在它上面设置速度，当有东西与它碰撞时，它永远不会移动。名称为 static，本质上是 static。非常适合我们让玩家四处奔跑的地面和平台。 </p>
+<p><strong>Group:</strong>  将相似对象组合在一起并将他们作为一个单元进行控制的方法，还可以通过Group与其他游戏对象之间的冲突。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">config = &#123; // phaser配置</span><br><span class="line">			type: Phaser.AUTO,</span><br><span class="line">            physics: &#123;</span><br><span class="line">                default: &#x27;arcade&#x27;,</span><br><span class="line">                arcade: &#123;</span><br><span class="line">                    gravity: &#123; y: 300 &#125;,</span><br><span class="line">                    debug: false</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            width: 800,</span><br><span class="line">            height: 600,</span><br><span class="line">            scene: this.scene</span><br><span class="line">            &#125;</span><br><span class="line">// 创建函数: 一般对scene的操作</span><br><span class="line">function create()&#123;</span><br><span class="line">	let platforms = this.physics.add.staticGroup(); // 创建一个静态组</span><br><span class="line">	this.platfroms.create(400,568,&#x27;ground&#x27;).setScale(2).refreshBody() //torefreshBody() 是必需的，因为我们已经缩放了一个静态物理物体，因此我们必须告诉物理世界我们所做的更改。</span><br><span class="line">	platforms.create.(200,500,&#x27;ground&#x27;) // 图像是根据其中心定位的</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/blog/2024/05/10/three%E5%9F%BA%E7%A1%80%E7%AF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -189,10 +270,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-05-10 17:47:16 / 修改时间：17:49:39" itemprop="dateCreated datePublished" datetime="2024-05-10T17:47:16+08:00">2024-05-10</time>
+              <time title="创建时间：2024-05-10 17:47:16" itemprop="dateCreated datePublished" datetime="2024-05-10T17:47:16+08:00">2024-05-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-07-17 18:00:33" itemprop="dateModified" datetime="2025-07-17T18:00:33+08:00">2025-07-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -552,38 +639,7 @@
 <p>添加多i个标注</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">    let num = 0</span><br><span class="line"></span><br><span class="line">    for(let i=0;i&lt;5;i++)&#123;</span><br><span class="line">        glbLoader.load(&#x27;tree2.glb&#x27;,glb=&gt;&#123;</span><br><span class="line">            console.log(glb,&#x27;shu&#x27;);</span><br><span class="line">            glb.scene.traverse(item=&gt;&#123;</span><br><span class="line">                if(item.isMesh)&#123;</span><br><span class="line">                    console.log(item,&#x27;shuju &#x27;);</span><br><span class="line">                    // item.material.emissive.set(&#x27;red&#x27;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            glb.scene.scale.set(0.1,0.1,0.1)</span><br><span class="line">            glb.scene.position.set(num,0,num)</span><br><span class="line"></span><br><span class="line">            // 创建树的标签 css2D 如果需要将标签的位置设置在某个物体顶上的话 如果只设置css定位，缩放时标签会偏移；建议还是用精准定位标签的position属性 </span><br><span class="line">            const treeDom = document.querySelector(&#x27;.treeName&#x27;).cloneNode()</span><br><span class="line">            treeDom.innerHTML = &#x27;第&#x27;+(i+1)+&#x27;棵树&#x27;</span><br><span class="line">            const treeTip = new CSS2DObject(treeDom)</span><br><span class="line">            //方案1：将标签添加到该模型中 单独设置y的坐标</span><br><span class="line">            // treeTip.position.y = 500</span><br><span class="line">            // glb.scene.add(treeTip)</span><br><span class="line">            //方案2：获取模型的世界坐标，在修改y的坐标</span><br><span class="line">            // let adr = new THREE.Vector3()</span><br><span class="line">            // glb.scene.getWorldPosition(adr)</span><br><span class="line">            // adr.y += 50</span><br><span class="line">            // treeTip.position.copy(adr)</span><br><span class="line">            // // treeTip.position.x = 50  </span><br><span class="line">            // console.log(treeTip);</span><br><span class="line">            // scene.add(treeTip)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            // 添加css3d精灵 css3d的精灵不能不能被物体遮挡</span><br><span class="line">            // const iconDom = document.querySelector(&#x27;.icon&#x27;).cloneNode()</span><br><span class="line">            // const iconSprite = new CSS3DSprite(iconDom)</span><br><span class="line">            // iconSprite.position.y = 400</span><br><span class="line">            // glb.scene.add(iconSprite)</span><br><span class="line"></span><br><span class="line">            // 添加精灵模型 精灵模型可以被物体遮挡。</span><br><span class="line">            // const textureLoad = new THREE.TextureLoader()</span><br><span class="line">            // let spriteImg =   textureLoad.load(&#x27;/警戒.png&#x27;)</span><br><span class="line">            // const spriteM = new THREE.SpriteMaterial(&#123;map:spriteImg&#125;)</span><br><span class="line">            // const sprite = new THREE.Sprite(spriteM)</span><br><span class="line">            // sprite.position.y = 450</span><br><span class="line">            // sprite.scale.set(100,100,100)</span><br><span class="line">            // glb.scene.add(sprite)</span><br><span class="line"></span><br><span class="line">           </span><br><span class="line">            //通过canvas来作为精灵的贴图绘制标注</span><br><span class="line">            let tipcanvas = createCanvas()</span><br><span class="line">            const canvasTexture = new THREE.CanvasTexture(tipcanvas)</span><br><span class="line">            const spriteM2 = new THREE.SpriteMaterial(&#123;map:canvasTexture&#125;)</span><br><span class="line">            const sprite2 = new THREE.Sprite(spriteM2)</span><br><span class="line">            sprite2.position.y = 450</span><br><span class="line">            sprite2.scale.set(canvas.width/canvas.height*100,100,100)</span><br><span class="line">            glb.scene.add(sprite2)</span><br><span class="line"></span><br><span class="line">            scene.add(glb.scene)</span><br><span class="line">            num+=20</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	function createCanvas(src=&#x27;house/nz (1).png&#x27;)&#123;</span><br><span class="line">    const img = new Image()</span><br><span class="line">    img.src = src</span><br><span class="line">    //通过canvas来绘制精灵模型的贴图</span><br><span class="line">    const tipCan = document.createElement(&#x27;canvas&#x27;)</span><br><span class="line">    let str = &#x27;设备A&#x27;</span><br><span class="line">    let arr = str.split(&#x27;&#x27;)</span><br><span class="line">    const arc = /[\u4e00-\u9fa5]/</span><br><span class="line">    let strLength = 0 //字符串的长度</span><br><span class="line">    for(let i = 0;i&lt;arr.length;i++)&#123;</span><br><span class="line">        if(arc.test(arr[0]))&#123;//判断的是否为汉字 是汉字+1</span><br><span class="line">            strLength+=1</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            strLength+=0.0 //是应为或者其他符号 则+0.5</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 根据字体符号类型和数量，文字font-size大小来设置canvas画布的宽度</span><br><span class="line">    const h = 80</span><br><span class="line">    const w = h + strLength*32</span><br><span class="line">    tipCan.width = w</span><br><span class="line">    tipCan.height = h</span><br><span class="line"></span><br><span class="line">    const h1 = h*0.8</span><br><span class="line">    const c = tipCan.getContext(&#x27;2d&#x27;)//获取canvas的上下文 才能绘制</span><br><span class="line">    const r = h1/2</span><br><span class="line">    c.arc(r,r,r,-Math.PI/2,Math.PI/2,true)//顺势针旋转半圆</span><br><span class="line">    c.arc(w-r,r,r,Math.PI/2,-Math.PI/2,true)//顺势针旋转半圆</span><br><span class="line">    // c.fillStyle = &quot;rgba(0,0,0,0.0)&quot;; //背景透明</span><br><span class="line">    // c.fillRect(0, 0, w, h);</span><br><span class="line">    c.fillStyle = &quot;rgba(255,255,255,1)&quot;; </span><br><span class="line">    c.fill()</span><br><span class="line">    // c.drawImage(img, 0, 0, w, h);//图片绘制到canvas画布上</span><br><span class="line">    // 箭头</span><br><span class="line">    c.beginPath()</span><br><span class="line">    const h2 = h-h1</span><br><span class="line">    c.moveTo(w/2-h2*0.6,h1)</span><br><span class="line">    c.lineTo(w/2+h2*0.6,h1)</span><br><span class="line">    c.lineTo(w/2,h)</span><br><span class="line">    c.fill()</span><br><span class="line">    // 文字</span><br><span class="line">    c.beginPath()</span><br><span class="line">    c.translate(w/2,h1/2)</span><br><span class="line">    c.fillStyle = &#x27;#000000&#x27;//文本填充色</span><br><span class="line">    c.font = &#x27;normal 32px 宋体&#x27;//文本的字体</span><br><span class="line">    c.textBaseline = &#x27;middle&#x27;//文本与fillText定义的纵坐标，对齐线</span><br><span class="line">    c.textAlign = &quot;center&quot;; //文本居中(以fillText定义的横坐标)</span><br><span class="line">    c.fillText(str,0,0)</span><br><span class="line"></span><br><span class="line">    return tipCan</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h3 id="着色器材质（重要）"><a href="#着色器材质（重要）" class="headerlink" title="着色器材质（重要）"></a>着色器材质（重要）</h3><p>着色器是 <code>WebGL</code> 的重要组件之一， shader 它是一种使用 <code>GLSL</code> 语言编写的运行在 <code>GPU</code> 上的小程序。顾名思义，着色器用于定位几何体的每个顶点，并为几何体的每个可见像素进行着色 。着色器是屏幕上呈现画面之前的最后一步，用它可以实现对先前渲染结果进行修改，如颜色、位置等，也可以对先前渲染的结果做后处理，实现高级的渲染效果。</p>
 <h3 id="资源网站"><a href="#资源网站" class="headerlink" title="资源网站"></a>资源网站</h3><ul>
 <li><p>3D模型下载：<a target="_blank" rel="noopener" href="https://sketchfab.com/">https://sketchfab.com/</a></p>
 </li>
@@ -2417,139 +2473,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/blog/2022/02/18/VITE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="veizj">
-      <meta itemprop="description" content="选择有时候比努力更重要">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="VEI">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2022/02/18/VITE/" class="post-title-link" itemprop="url">VITE</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-18 10:07:12" itemprop="dateCreated datePublished" datetime="2022-02-18T10:07:12+08:00">2022-02-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-08-18 10:12:22" itemprop="dateModified" datetime="2023-08-18T10:12:22+08:00">2023-08-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/VUE3/" itemprop="url" rel="index"><span itemprop="name">VUE3</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Vite-构建项目"><a href="#Vite-构建项目" class="headerlink" title="Vite 构建项目"></a>Vite 构建项目</h1><p>Vite（法语意为 “快速的”，发音 <code>/vit/</code>发音同 “veet”)是一种新型前端构建工具，能够显著提升前端开发体验。它主要由两部分组成：</p>
-<ul>
-<li>一个开发服务器，它基于 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">原生 ES 模块</a> 提供了 <a target="_blank" rel="noopener" href="https://vitejs.cn/guide/features.html">丰富的内建功能</a>，如速度快到惊人的 <a target="_blank" rel="noopener" href="https://vitejs.cn/guide/features.html#hot-module-replacement">模块热更新（HMR）</a>。</li>
-<li>一套构建指令，它使用 <a target="_blank" rel="noopener" href="https://rollupjs.org/">Rollup</a> 打包你的代码，并且它是预配置的，可输出用于生产环境的高度优化过的静态资源。</li>
-</ul>
-<p>Vite 意在提供开箱即用的配置，同时它的 <a target="_blank" rel="noopener" href="https://vitejs.cn/guide/api-plugin.html">插件 API</a> 和 <a target="_blank" rel="noopener" href="https://vitejs.cn/guide/api-javascript.html">JavaScript API</a> 带来了高度的可扩展性，并有完整的类型支持。</p>
-<h2 id="运作方式"><a href="#运作方式" class="headerlink" title="运作方式"></a>运作方式</h2><p>Vite 以 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">原生 ESM</a> 方式提供源码。这实际上是让浏览器接管了打包程序的部分工作：Vite 只需要在浏览器请求源码时进行转换并按需提供源码。根据情景动态导入代码，即只在当前屏幕上实际使用时才会被处理。</p>
-<ul>
-<li>Vite 将会使用 <a target="_blank" rel="noopener" href="https://esbuild.github.io/">esbuild</a> <a target="_blank" rel="noopener" href="https://vitejs.cn/guide/dep-pre-bundling.html">预构建依赖</a>。Esbuild 使用 Go 编写，并且比以 JavaScript 编写的打包器预构建依赖快 10-100 倍。</li>
-</ul>
-<p><img src="https://vitejs.cn/assets/bundler.37740380.png"></p>
-<p><img src="https://vitejs.cn/assets/esm.3070012d.png"></p>
-<h2 id="安装-启动"><a href="#安装-启动" class="headerlink" title="安装 &amp; 启动"></a>安装 &amp; 启动</h2><p><img src="D:/aaa98/个人笔记/vue/vue3/imgs/image-20220704092128035.png" alt="image-20220704092128035"></p>
-<ul>
-<li><p>注意：Vite 需要 <a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a> 版本 &gt;&#x3D; 12.0.0。</p>
-</li>
-<li><p>不使用模板 【推荐】</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#使用 <span class="attr">NPM</span>:  </span><br><span class="line">npm init vite@latest</span><br><span class="line">#yarn </span><br><span class="line">yarn create vite</span><br><span class="line">#pnpm 【推荐】</span><br><span class="line">pnpm create vite</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>填写项目名</li>
-<li>选择vue</li>
-<li>选择vue</li>
-<li>安装依赖包</li>
-<li>启动项目</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">   <span class="string">&quot;dev&quot;</span>: <span class="string">&quot;vite&quot;</span>,</span><br><span class="line">   <span class="string">&quot;build&quot;</span>: <span class="string">&quot;vue-tsc --noEmit &amp;&amp; vite build&quot;</span>,</span><br><span class="line">   <span class="string">&quot;preview&quot;</span>: <span class="string">&quot;vite preview&quot;</span></span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
-
-<h2 id="vscode-插件推荐-Vue-Language-Features-Volar"><a href="#vscode-插件推荐-Vue-Language-Features-Volar" class="headerlink" title="vscode 插件推荐 Vue Language Features (Volar)"></a>vscode 插件推荐 Vue Language Features (Volar)</h2><ul>
-<li><p>首先保证vscode是最新版本！</p>
-</li>
-<li><p>禁用 vetur插件（卸载vetur）</p>
-</li>
-<li><p>安装</p>
-<ul>
-<li>TypeScript Vue Plugin (Volar)</li>
-<li>Vue Language Features</li>
-</ul>
-</li>
-</ul>
-<h2 id="Vite-config-js配置"><a href="#Vite-config-js配置" class="headerlink" title="Vite.config.js配置"></a>Vite.config.js配置</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span></span><br><span class="line">#path resolve方法获取本地绝对路径</span><br><span class="line"><span class="keyword">import</span> &#123; resolve &#125; <span class="keyword">from</span> <span class="string">&#x27;path&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    #别名处理</span><br><span class="line">    <span class="attr">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: <span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src&#x27;</span>), <span class="comment">//别名 @相当于src 文件夹目录</span></span><br><span class="line">      <span class="comment">//remove i18n waring</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// why remove it , look for https://github.com/vitejs/vite/issues/6026</span></span><br><span class="line">    <span class="comment">// extensions: [&#x27;.js&#x27;, &#x27;.ts&#x27;, &#x27;.jsx&#x27;, &#x27;.tsx&#x27;, &#x27;.json&#x27;, &#x27;.vue&#x27;, &#x27;.mjs&#x27;]</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//本地代理服务器 跨域处理</span></span><br><span class="line">  <span class="attr">server</span>: &#123;</span><br><span class="line">    <span class="attr">host</span>: <span class="string">&#x27;0.0.0.0&#x27;</span>,</span><br><span class="line">    <span class="attr">open</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">proxy</span>: &#123;</span><br><span class="line">      <span class="comment">// 前缀写法</span></span><br><span class="line">      <span class="string">&#x27;/api&#x27;</span>: &#123;</span><br><span class="line">        <span class="attr">target</span>: <span class="string">&#x27;http://localhost:5000&#x27;</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">rewrite</span>: <span class="function">(<span class="params">path</span>) =&gt;</span> path.<span class="title function_">replace</span>(<span class="regexp">/^\/api/</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line"> <span class="comment">//scss预处理</span></span><br><span class="line">  <span class="attr">css</span>: &#123;</span><br><span class="line">    <span class="attr">preprocessorOptions</span>: &#123;</span><br><span class="line">      <span class="attr">scss</span>: &#123;</span><br><span class="line">        <span class="attr">additionalData</span>: <span class="string">&quot;@import &#x27;@/assets/scss/_index.scss&#x27;;&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装sass"><a href="#安装sass" class="headerlink" title="安装sass"></a>安装sass</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pnpm i sass -D</span><br><span class="line">yarn add sass -D</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2621,7 +2544,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2675,7 +2598,7 @@
 <div class="copyright">
   
   &copy; 2023-08 – 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -2684,12 +2607,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">103k</span>
+    <span title="站点总字数">104k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:34</span>
+    <span title="站点阅读时长">1:35</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
